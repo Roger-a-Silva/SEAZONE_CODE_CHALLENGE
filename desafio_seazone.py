@@ -13,11 +13,13 @@ df_bairro_id_anuncio = (df_unificado[['suburb','airbnb_listing_id']].reset_index
 df_bairro_ordenado = df_bairro_id_anuncio.groupby(['suburb'], as_index=False)['airbnb_listing_id'].count().sort_values(by='airbnb_listing_id', ascending=True).reset_index(drop=True) 
 df_bairro_ordenado.rename(columns = {'suburb':'BAIRRO','airbnb_listing_id':'QTD_ANUNCIO'}, inplace = True) 
 #Dataframe solução 1
-df_bairro_ordenado
+print("1. Ordene os bairros em ordem crescente de número de listings; \n")
+display(df_bairro_ordenado)
 #Gráfico solução 1
 df_bairro_ordenado_graph = pd.DataFrame(df_bairro_ordenado,columns=['BAIRRO','QTD_ANUNCIO'])
 df_bairro_ordenado_graph.plot(x ='BAIRRO', y='QTD_ANUNCIO', kind = 'bar')
 plt.show()
+input("Press Enter to continue...")
 
 
 #2. Ordene os bairros em ordem crescente de faturamento médio dos listings;
@@ -28,7 +30,8 @@ df_bairro_faturamento_valor_final = df_bairro_faturamento_valor.copy()
 df_bairro_faturamento_valor_final['price_string'] = 'R$ ' + df_bairro_faturamento_valor_final['price_string'].astype(str)
 df_bairro_faturamento_valor_final.rename(columns = {'suburb':'BAIRRO','price_string':'VALOR_TOTAL'}, inplace = True) 
 #Dataframe solução 2
-df_bairro_faturamento_valor_final
+print("2. Ordene os bairros em ordem crescente de faturamento médio dos listings; \n")
+display(df_bairro_faturamento_valor_final)
 #Gráfico solução 2
 df_bairro_faturamento_valor_graph = pd.DataFrame(df_bairro_faturamento_valor,columns=['suburb','price_string'])
 df_bairro_faturamento_valor_graph.price_string = df_bairro_faturamento_valor_graph.price_string.astype(int)
@@ -36,6 +39,7 @@ df_bairro_faturamento_valor_graph.rename(columns = {'suburb':'BAIRRO','price_str
 df_bairro_faturamento_valor_graph.plot(x ='BAIRRO', y='VALOR_TOTAL_EM_REAIS', kind = 'line')
 plt.gcf().axes[0].yaxis.get_major_formatter().set_scientific(False)
 plt.show()
+input("Press Enter to continue...")
 
 
 #3. Existem correlações entre as características de um anúncio e seu faturamento?
@@ -50,7 +54,8 @@ df_faturamento_detalhe_estrelas_final = df_faturamento_detalhe_estrelas.copy()
 df_faturamento_detalhe_estrelas_final['price_string'] = 'R$ ' + df_faturamento_detalhe_estrelas_final['price_string'].astype(str)
 df_faturamento_detalhe_estrelas_final.rename(columns = {'star_rating':'QTD_ESTRELAS','price_string':'VALOR_TOTAL'}, inplace = True)
 #Dataframe solução 3
-df_faturamento_detalhe_estrelas_final
+print("3. Existem correlações entre as características de um anúncio e seu faturamento? \n")
+display(df_faturamento_detalhe_estrelas_final)
 ####R: Sim. Existe uma relação diretamente proporcional sobre a quantidade de estrelas do anúncio e o faturamento total gerado.
 #Gráfico solução 3
 label_star = df_faturamento_detalhe_estrelas['star_rating']
@@ -58,6 +63,7 @@ explode = (0, 0, 0, 1, 2, 3, 4)
 df_faturamento_detalhe_estrelas.rename(columns = {'star_rating':'QTD_ESTRELAS','price_string':'PERCENTUAL_DE_FATURAMENTO_POR_ESTRELA'}, inplace = True)
 df_faturamento_detalhe_estrelas.plot.pie(y='PERCENTUAL_DE_FATURAMENTO_POR_ESTRELA',explode=explode,figsize=(7,7),autopct='%1.1f%%', startangle=10,labels = label_star,fontsize=15)
 plt.show()
+input("Press Enter to continue...")
 ####R: Entretanto, existe um alto valor de faturamento sobre imóveis que não apresentaram informações sobre a quantidade de estrelas do anúncio (89.210 no total com faturamento de R$31.791.356,00).
 ####R: Para uma análise mais profunda, temos esses anúncios como 'N/A' e iremos procurar por correlações entre outras características e faturamento dessa categoria.
 
@@ -76,7 +82,8 @@ df_nostar_detalhe_imovel_final = df_nostar_detalhe_imovel.copy()
 df_nostar_detalhe_imovel_final['price_string'] = 'R$ ' + df_nostar_detalhe_imovel_final['price_string'].astype(str)
 df_nostar_detalhe_imovel_final.rename(columns = {'star_rating':'QTD_ESTRELAS','number_of_bedrooms':'QTD_QUARTOS','number_of_bathrooms':'QTD_BANHEIROS','price_string':'VALOR_TOTAL'}, inplace = True)
 #Dataframe solução 3.1
-df_nostar_detalhe_imovel
+print("3.1. Valor total de imóveis que possuem entre 1/2 quartos e 1/2 banheiros sem avaliações de estrelas. \n")
+display(df_nostar_detalhe_imovel_final)
 ####R: A maioria desses anúncios são referentes a locais pequenos (entre 1/2 quartos e 1/2 banheiros, representando aprox. 76% das locações sem informações sobre quantidade de estrelas. (R$ 24.462.936,00)
 ####R: Esse valor foi encontrado somando os 3 maiores faturamentos de uma lista ordenada com informações físicas do imóvel do anúncio. Essa lista pode ser acessada no dataframe: df_nostar_detalhe_imovel_view
 
@@ -93,7 +100,8 @@ df_nostar_detalhe_local_final = df_nostar_detalhe_local.copy()
 df_nostar_detalhe_local_final['price_string'] = 'R$ ' + df_nostar_detalhe_local_final['price_string'].astype(str)
 df_nostar_detalhe_local_final.rename(columns = {'star_rating':'QTD_ESTRELAS','price_string':'VALOR_TOTAL'}, inplace = True)
 #Dataframe solução 3.2
-df_nostar_detalhe_local_final
+print("3.2. Valor total de imóveis que fazem referência ao mar/praia no anúncio e estão sem avaliações de estrelas. \n")
+display(df_nostar_detalhe_local_final)
 ####R: Outro valor de destaque vem de anúncios que fazem referência ao mar/praia, representando aprox. 51% das locações sem informações sobre quantidade de estrelas. (R$ 16.281.230,00)
 ####R: Esse valor foi encontrado após buscar uma lista de anúncios que mencionam 'mar' ou 'praia'. Essa lista pode ser acessada no dataframe: df_nostar_detalhe_local_view
 
@@ -113,10 +121,11 @@ df_nostar_detalhe_local_imovel_final = df_nostar_detalhe_local_imovel.copy()
 df_nostar_detalhe_local_imovel_final['price_string'] = 'R$ ' + df_nostar_detalhe_local_imovel_final['price_string'].astype(str)
 df_nostar_detalhe_local_imovel_final.rename(columns = {'star_rating':'QTD_ESTRELAS','price_string':'VALOR_TOTAL'}, inplace = True)
 #Dataframe solução 3.3
-df_nostar_detalhe_local_imovel_final
+print("3.3. Valor total de imóveis que possuem entre 1/2 quartos e 1/2 banheiros e fazem referência ao mar/praia no anúncio, sem avaliações de estrelas. \n")
+display(df_nostar_detalhe_local_imovel_final)
 ####R: Imóveis de até 2 quartos e até 2 banheiros e que também mencionam 'mar' ou 'praia' no anúncio representam aprox. 40% das locações sem informações sobre quantidade de estrelas. (R$ 12.737.599,00)
 ####R: Esse valor foi encontrado após gerar uma lista com as citadas características. Essa lista pode ser acessada no dataframe: df_nostar_detalhe_local_imovel_view
-
+input("Press Enter to continue...")
 
 df_extra_1 = df_nostar_detalhe_local.copy()
 df_extra_1.rename(columns = {'price_string':'VALOR_APTO_PRAIA'}, inplace = True)
@@ -137,14 +146,16 @@ df_extra_final = df_extra_5.copy()
 representam = ['100% dos anuncios sem avaliação', '76% dos anuncios sem avaliação', '51% dos anuncios sem avaliação', '40% dos anuncios sem avaliação']
 df_extra_final['PERCENTUAL_DE_FATURAMENTO'] = representam
 #Dataframe solução 3.4
-df_extra_final
+print("3.4. Tabela comparativa com volume de faturamento das unidades sem avaliações de estrelas. \n")
+display(df_extra_final)
 ####R: Por fim, temos uma tabela onde podemos visualizar qual o total gasto por categoria, dentro dos anúncios sem avaliação, e o percentual de cada tipo de imóvel.
-
+print("3.4. Gráfico comparativo com volume de faturamento das unidades sem avaliações de estrelas. \n")
 #Gráfico solução 3.4
 df_extra_5 = pd.DataFrame(df_extra_5,columns=['TIPO_VALOR','VALOR_TOTAL'])
 df_extra_5.plot(x ='TIPO_VALOR', y='VALOR_TOTAL', kind = 'bar')
 plt.gcf().axes[0].yaxis.get_major_formatter().set_scientific(False)
 plt.show()
+input("Press Enter to continue...")
 
 
 #4. Qual a antecedência média das reservas?
@@ -160,20 +171,23 @@ df_reservas_view['antecedencia'] = (df_reservas_view['date'] - df_reservas_view[
 df_reservas_view =  df_reservas_view[df_reservas_view['antecedencia'] != 0 ]
 df_reservas = df_reservas_view['antecedencia'].mean()
 #Resultado solução 4
-df_reservas
+print("4. Qual a antecedência média das reservas? \n")
+display(df_reservas)
 #R: A antecedência média das reservas é de 3.78 dias.
-
+input("Press Enter to continue...")
 
 df_reservas_fds = df_reservas_view.groupby(['dia_ocupado'], as_index=False)['antecedencia'].mean().sort_values(by='antecedencia', ascending=False).reset_index(drop=True) 
 df_reservas_fds =  df_reservas_fds[df_reservas_fds['antecedencia'] != 0 ]
 #Resultado solução 4.1
-df_reservas_fds
+print("a. Esse número é maior ou menor para finais de semana? \n")
+display(df_reservas_fds)
 #R: Essa antecedência é maior para os finais de semana, sendo as médias de domingo, sábado e sexta feira as maiores dentre os dias da semana, respectivamente.
 #Gráficos solução 4.1
 df_reservas_fds_graph = pd.DataFrame(df_reservas_fds,columns=['dia_ocupado','antecedencia'])
 df_reservas_fds_graph.plot(x ='dia_ocupado', y='antecedencia', kind = 'bar')
 plt.show()
-
+input("Press Enter to continue...")
+print("Obrigado por ter chegado até aqui! Por favor, não desiste de mim! :D")
 
 
 
