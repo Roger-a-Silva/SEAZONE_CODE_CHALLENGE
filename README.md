@@ -61,7 +61,7 @@ As seguintes ferramentas foram usadas para desenvolvimento da análise:
 ## Links Uteis
 
 - Link da W3Schools <a href="https://www.w3schools.com/">W3 School</a>
-- Link do StackOverflow: <a href="https://stackoverflow.com/=">StackOverflow</a>
+- Link do StackOverflow: <a href="https://stackoverflow.com/">StackOverflow</a>
 
 ---
 
