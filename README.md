@@ -1,11 +1,72 @@
-#SEAZONE_CODE_CHALLENGE
+</p>
+<h1 align="center">
+SEAZONE CODE CHALLENGE
+</h1>
+
+<h4 align="center">
+  Análise sobre massa de dados.
+</h4>
 
 
-Para o desafio desenvolvido em Python, foram utilizadas a bibliotecas:
-- Pandas
-- Numpy
-- Matplotlib.pyplot
+### Tópicos
 
+[Como executar o Projeto](#como-executar-o-projeto)
+
+[Tecnologias](#tecnologias)
+
+[Links Uteis](#links-uteis)
+
+[Metodologia](#metodologia)
+
+---
+
+## Sobre o desafio
+
+#### O desafio consiste em analisar os dados de ocupação e preço de anúncios no Airbnb, a fim de responder uma série de perguntas.
+
+---
+
+## Como executar o Projeto
+
+```bash
+
+# Vá para a pasta do projeto;
+$ cd SEAZONE_CODE_CHALLENGE-main
+# Instale o python (linux);
+$ sudo apt-get install python3
+# Instale as bibliotecas necessárias;
+$ pip3 install pandas
+$ pip3 install numpy
+$ pip3 install matplotlib.pyplot
+# Execute a aplicação em modo de desenvolvimento;
+$ py desafio_seazone.py
+# Feche as imagem dos gráficos e pressione enter para seguir com o programa.
+
+```
+
+
+---
+
+## Tecnologias
+
+As seguintes ferramentas foram usadas para desenvolvimento da análise:
+
+- **[Python 3.7](https://www.python.org/)**
+- **[Pandas](https://pandas.pydata.org/)**
+- **[Numpy](https://numpy.org/)**
+- **[Matplotlib](https://matplotlib.org//)**
+
+---
+
+## Links Uteis
+
+- Link da W3Schools <a href="https://www.w3schools.com/">W3 School</a>
+- Link do StackOverflow: <a href="https://stackoverflow.com/=">StackOverflow</a>
+
+---
+
+
+## Metodologia
 A seguir, um breve resumo sobre os métodos utilizados para realização das questões.
 
 # Início
